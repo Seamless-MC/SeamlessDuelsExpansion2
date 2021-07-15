@@ -2,10 +2,10 @@ package com.seamlessmc.duelexpansion.v2;
 
 
 import com.seamlessmc.duelexpansion.v2.papi.DuelTop;
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.realized.duels.api.Duels;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import java.util.logging.Level;
 
 public class DuelsExpansion extends JavaPlugin {
@@ -31,7 +31,11 @@ public class DuelsExpansion extends JavaPlugin {
         }
         if (Bukkit.getPluginManager().getPlugin("Duels") != null) {
             duelAPI = (Duels) Bukkit.getServer().getPluginManager().getPlugin("Duels");
-            PlaceholderAPI.registerExpansion(new DuelTop());
+            if (new DuelTop().register()) {
+                System.out.println("Successfully hooked PlaceholderAPI!");
+            } else {
+                System.out.println("Failed to hook PlaceholderAPI!");
+            }
         } else {
             getLogger().log(Level.INFO, "Could not find Duel plugin, duels functions will be disabled");
         }

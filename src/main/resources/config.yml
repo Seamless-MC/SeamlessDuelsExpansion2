@@ -29,6 +29,7 @@ DuelTop:
   # Allowed placeholders: %name% %uuid% and %elo%
   # PlaceholderAPI placeholders are processed
   format: '&b&l%name% &8&l| &r&b%elo%'
+  na: '&8Not Available'
 Rankings:
   Ranks:
     Silver:
