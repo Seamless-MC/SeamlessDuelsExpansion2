@@ -1,6 +1,6 @@
 name: SeamlessDuelsExpansion
 author: DroppingAnvil
 main: com.seamlessmc.duelexpansion.v2.DuelsExpansion
-version: 2.3-SNAPSHOT
+version: 2.5-SNAPSHOT
 loadbefore:
   - Duels
