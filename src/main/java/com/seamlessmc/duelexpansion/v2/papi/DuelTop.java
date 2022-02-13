@@ -5,7 +5,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.realized.duels.api.kit.Kit;
 import me.realized.duels.api.user.UserManager;
-import me.realized.duels.util.RatingUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
@@ -32,14 +31,6 @@ public class DuelTop extends PlaceholderExpansion {
     }
     @Override
     public String onRequest(OfflinePlayer player, String identifier){
-        if (trueELO == null) {
-            for (Method m : RatingUtil.class.getDeclaredMethods()) {
-                if (m.getName().equalsIgnoreCase("r")) {
-                    trueELO = m;
-                }
-            }
-        }
-        System.out.print(identifier);
         if (DuelsExpansion.duelAPI != null) {
             if (format.equalsIgnoreCase("&8Not Available")) {
                 format = DuelsExpansion.instance.getConfig().getString("DuelTop.format", "&8Not Available");
@@ -55,13 +46,8 @@ public class DuelTop extends PlaceholderExpansion {
                     sf = PlaceholderAPI.setPlaceholders(offlinePlayer, format);
                     sf = sf.replace("&", "§");
                     return sf.replace("%name%", data.getName()).replace("%uuid%", data.getUuid().toString()).replace("%elo%", String.valueOf(data.getValue()));
-                    //return sf.replace("%name%", data.getName()).replace("%uuid%", data.getUuid().toString()).replace("%elo%", String.valueOf(trueELO.invoke(data.getValue())));
                 } catch (IndexOutOfBoundsException e) {
                     return "&8Not Available";
-               // } catch (InvocationTargetException e) {
-               //     e.printStackTrace();
-              //  } catch (IllegalAccessException e) {
-              //      e.printStackTrace();
                 }
             } else {
                 Kit k = DuelsExpansion.duelAPI.getKitManager().get(s);
@@ -76,6 +62,6 @@ public class DuelTop extends PlaceholderExpansion {
                 }
             }
         }
-        return null;
+        return "&8Duels Not Available";
     }
 }
